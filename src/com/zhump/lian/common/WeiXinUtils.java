@@ -11,9 +11,7 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -56,24 +54,38 @@ public class WeiXinUtils {
     public static final int DEF_READ_TIMEOUT = 30000;
     public static String userAgent =  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
     
-    public static final String APP_ID = "";
-    
     public static final String TEST_ID = "";
-    
-    public static final String  SECRET = "";
     
     public static final String  TEST_SECRET = "";
     
+    /**
+     *获取access_token
+     */
     public static final String MENU_CONSTANT = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
     
+    /**
+     * 设置行业
+     */
     public static final String TEMPLATE_CONSTANT = "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=ACCESS_TOKEN";
     
+    /**
+     * 获取行业
+     */
     public static final String GET_INDEUSTRY_DATA = "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token=ACCESS_TOKEN";
     
+    /**
+     * 添加模板
+     */
     public static final String GET_TEMPLATE_ID = "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=ACCESS_TOKEN";
     
+    /**
+     * 发送模板
+     */
     public static final String SET_TEMPLATE_DATA = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
     
+    /**
+     * 获取模板列表
+     */
     public static final String GET_TEMLATE_LIST = "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=ACCESS_TOKEN";
     
     
@@ -330,7 +342,8 @@ public class WeiXinUtils {
 	* @return String    返回类型 
 	* @version V1.0
 	 */
-   public static String net(String strUrl, Map params,String method) throws Exception {
+   @SuppressWarnings("unchecked")
+public static String net(String strUrl, @SuppressWarnings("rawtypes") Map params,String method) throws Exception {
        HttpURLConnection conn = null;
        BufferedReader reader = null;
        String rs = null;
@@ -347,10 +360,6 @@ public class WeiXinUtils {
                conn.setRequestMethod("POST");
                conn.setDoOutput(true);
            }
-           
-        
-           
-           
            conn.setRequestProperty("User-agent", userAgent);
            conn.setRequestProperty("accept", "*/*");  
            conn.setRequestProperty("connection", "Keep-Alive");  
@@ -388,7 +397,8 @@ public class WeiXinUtils {
    }
 
    //将map型转为请求参数型
-   public static String urlencode(Map<String,Object>data) {
+   @SuppressWarnings("rawtypes")
+public static String urlencode(Map<String,Object>data) {
        StringBuilder sb = new StringBuilder();
        for (Map.Entry i : data.entrySet()) {
            try {

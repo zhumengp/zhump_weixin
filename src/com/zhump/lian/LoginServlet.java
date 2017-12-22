@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.codec.net.URLCodec;
 
-import com.zhump.lian.common.MessageUtils;
+import com.zhump.lian.common.WeiXinUtils;
 
 /**
  * 
@@ -37,7 +36,7 @@ public class LoginServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String callbackUrl = "http://zhump.free.ngrok.cc/zhump_weixin/callback";
 		String url = "https://open.weixin.qq.com/connect/oauth2/authorize"
-				+ "?appid="+MessageUtils.TEST_ID
+				+ "?appid="+WeiXinUtils.TEST_ID
 				+ "&redirect_uri="+URLEncoder.encode(callbackUrl,"utf-8")
 				+ "&response_type=code"
 				+ "&scope=snsapi_userinfo"

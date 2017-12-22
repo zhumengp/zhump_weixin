@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zhump.lian.common.MessageUtils;
 import com.zhump.lian.common.WeiXinUtils;
 import com.zhump.lian.pojo.AuthToken;
 import com.zhump.lian.pojo.UserInfo;
