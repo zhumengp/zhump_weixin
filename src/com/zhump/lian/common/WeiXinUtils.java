@@ -19,7 +19,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
-
+import com.alibaba.fastjson.JSON;
 import com.zhump.lian.pojo.AuthToken;
 import com.zhump.lian.pojo.button.Button;
 import com.zhump.lian.pojo.button.ClickButton;
@@ -54,9 +54,9 @@ public class WeiXinUtils {
     public static final int DEF_READ_TIMEOUT = 30000;
     public static String userAgent =  "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
     
-    public static final String TEST_ID = "";
+    public static final String TEST_ID = "wxca97eff760bac2a1";
     
-    public static final String  TEST_SECRET = "";
+    public static final String  TEST_SECRET = "f677573ce076cb8364425c282e837efb";
     
     /**
      *获取access_token
@@ -320,7 +320,7 @@ public class WeiXinUtils {
 
 	  
 	  /**
-	   * 获取列表
+	   * 获取模板列表
 	   */
 	  public static JSONObject getTemplateList(String accessToken) {
 		  String url=GET_TEMLATE_LIST.replace("ACCESS_TOKEN", accessToken);
@@ -343,7 +343,7 @@ public class WeiXinUtils {
 	* @version V1.0
 	 */
    @SuppressWarnings("unchecked")
-public static String net(String strUrl, @SuppressWarnings("rawtypes") Map params,String method) throws Exception {
+   public static String net(String strUrl, @SuppressWarnings("rawtypes") Map params,String method) throws Exception {
        HttpURLConnection conn = null;
        BufferedReader reader = null;
        String rs = null;
@@ -459,7 +459,7 @@ public static String urlencode(Map<String,Object>data) {
    
    public static String createTemplatePojo(String templateId) {
 	   TemplatePojo templatePojo = new TemplatePojo();
-	   templatePojo.setTouser("op_5qw5xdAAJ85A5gf3zxMlozYVw");
+	   templatePojo.setTouser("op_5qwxdRNDeRr7VtcrjAE5xNlXs");
 	   templatePojo.setTemplate_id(templateId);
 	   Data data = new Data();
 	   First first = new First();
@@ -468,16 +468,16 @@ public static String urlencode(Map<String,Object>data) {
 	   keynote1.setValue("39.8元");
 	   
 	   OrderProductName keynote2 = new OrderProductName();
-	   keynote2.setValue("甜甜圈");
+	   keynote2.setValue("田田圈");
 	   
 	   Remark remark = new Remark();
-	   remark.setValue("欢饮再次购买");
+	   remark.setValue("如有问题请咨询阿里云");
 	   data.setFirst(first);
 	   data.setOrderMoneySum(keynote1);
 	   data.setOrderProductName(keynote2);
 	   data.setRemark(remark);
 	   templatePojo.setData(data);
-	   String string = JSONObject.fromObject(templatePojo).toString();
+	   String string = JSON.toJSONString(templatePojo).toString();
 	   return string;
    }
    

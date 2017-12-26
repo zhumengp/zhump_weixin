@@ -1,6 +1,12 @@
 package com.zhump.lian.pojo.template;
 
+
 import net.sf.json.JSONObject;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Data {
 	
@@ -10,6 +16,8 @@ public class Data {
 	
 	private OrderProductName orderProductName;
 	
+	@JSONField(name="Remark")
+	//@JsonProperty(value="Remark") 
 	private Remark remark;
 
 	public First getFirst() {
@@ -32,16 +40,15 @@ public class Data {
 		this.orderProductName = orderProductName;
 	}
 
-	
-
+	@JsonIgnore
 	public Remark getRemark() {
 		return remark;
 	}
-
+	@JsonIgnore
 	public void setRemark(Remark remark) {
 		this.remark = remark;
 	}
-
+	@JsonIgnore
 	public void setFirst(First first) {
 		this.first = first;
 	}
@@ -52,7 +59,7 @@ public class Data {
 		Remark Remark = new Remark();
 		Remark.setValue("niaho");
 		data.setRemark(Remark);
-		String string = JSONObject.fromObject(data).toString();
+		String string = JSON.toJSONString(data).toString();
 		System.out.println("string:"+string);
 	}
 }
