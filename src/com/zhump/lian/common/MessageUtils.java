@@ -90,10 +90,6 @@ public class MessageUtils {
 		xStream.alias("xml", message.getClass());
 		return xStream.toXML(message);
 	}
-	
-	
-	
-    
-    
+
 	
 }
