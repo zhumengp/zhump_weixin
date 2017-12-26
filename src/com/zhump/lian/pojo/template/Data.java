@@ -1,12 +1,9 @@
 package com.zhump.lian.pojo.template;
 
 
-import net.sf.json.JSONObject;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Data {
 	
@@ -16,8 +13,10 @@ public class Data {
 	
 	private OrderProductName orderProductName;
 	
+	/**
+	 * 保证首字母大写，因为微信模板 互联网和点击技术的模板 描述Remark 要求 R 大写
+	 */
 	@JSONField(name="Remark")
-	//@JsonProperty(value="Remark") 
 	private Remark remark;
 
 	public First getFirst() {
@@ -51,15 +50,5 @@ public class Data {
 	@JsonIgnore
 	public void setFirst(First first) {
 		this.first = first;
-	}
-
-
-	public static void main(String[] args) {
-		Data data = new Data();
-		Remark Remark = new Remark();
-		Remark.setValue("niaho");
-		data.setRemark(Remark);
-		String string = JSON.toJSONString(data).toString();
-		System.out.println("string:"+string);
 	}
 }
